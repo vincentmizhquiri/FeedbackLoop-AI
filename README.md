@@ -4,7 +4,7 @@
 
 FeedbackLoop AI closes the gap between "interview happened" and "decision ready." It monitors interview feedback against a company's SLA, automatically reminds interviewers who are past deadline, and synthesizes submitted scorecards into single-candidate summaries or criteria-weighted, ranked candidate comparisons — so recruiters and hiring managers spend less time chasing and collating, and more time deciding.
 
-Full product spec: [`docs/PRD.md`](https://docs.google.com/document/d/12nB4Mi9R2ZJiuki3c2AEK4Mix5vnRqp8OuMCUYgsSM4/edit?usp=sharing) *(or link to your PRD doc/location)*
+Full product spec: [`docs/PRD.md`](https://docs.google.com/document/d/12nB4Mi9R2ZJiuki3c2AEK4Mix5vnRqp8OuMCUYgsSM4/edit?usp=sharing) 
 
 ---
 
