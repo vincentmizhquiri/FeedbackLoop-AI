@@ -1,0 +1,20 @@
+{
+  "req_500": {
+    "jd_summary": "Senior Backend Engineer, distributed systems team. Owns services handling payment-critical traffic.",
+    "must_have": [
+      "Strong distributed systems fundamentals (demonstrated in systems design round)",
+      "Track record of clear, calm communication under ambiguity or pressure"
+    ],
+    "nice_to_have": [
+      "Cross-functional collaboration experience",
+      "Prior experience owning a service end-to-end"
+    ],
+    "prioritized_signals": [
+      "Systems design round carries the most weight -- this is a hands-on IC role",
+      "Any red flag on team collaboration should be weighed heavily given past team friction on this org",
+      "Cross-functional round is supplementary, not decisive"
+    ],
+    "intake_meeting_date": "2026-06-28",
+    "participants": ["Recruiter: Jamie Torres", "Hiring Manager: Priya Nair"]
+  }
+}

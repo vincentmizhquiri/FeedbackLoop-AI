@@ -1,0 +1,84 @@
+[
+  {
+    "interview_id": "int_1001",
+    "req_id": "req_500",
+    "candidate_id": "cand_A",
+    "interviewer": "Priya Nair",
+    "interviewer_contact": "priya.nair@company.com",
+    "panel_stage": "Onsite - Systems Design",
+    "interview_time": "2026-07-05T15:00:00Z",
+    "status": "completed"
+  },
+  {
+    "interview_id": "int_1002",
+    "req_id": "req_500",
+    "candidate_id": "cand_A",
+    "interviewer": "Marcus Chen",
+    "interviewer_contact": "marcus.chen@company.com",
+    "panel_stage": "Onsite - Behavioral",
+    "interview_time": "2026-07-05T16:00:00Z",
+    "status": "completed"
+  },
+  {
+    "interview_id": "int_1003",
+    "req_id": "req_500",
+    "candidate_id": "cand_B",
+    "interviewer": "Priya Nair",
+    "interviewer_contact": "priya.nair@company.com",
+    "panel_stage": "Onsite - Systems Design",
+    "interview_time": "2026-07-05T10:00:00Z",
+    "status": "completed"
+  },
+  {
+    "interview_id": "int_1004",
+    "req_id": "req_500",
+    "candidate_id": "cand_B",
+    "interviewer": "Marcus Chen",
+    "interviewer_contact": "marcus.chen@company.com",
+    "panel_stage": "Onsite - Behavioral",
+    "interview_time": "2026-07-05T11:00:00Z",
+    "status": "completed"
+  },
+  {
+    "interview_id": "int_1005",
+    "req_id": "req_500",
+    "candidate_id": "cand_B",
+    "interviewer": "Dana Ruiz",
+    "interviewer_contact": "dana.ruiz@company.com",
+    "panel_stage": "Onsite - Cross-functional",
+    "interview_time": "2026-07-05T13:00:00Z",
+    "status": "completed"
+  },
+  {
+    "interview_id": "int_1006",
+    "req_id": "req_500",
+    "candidate_id": "cand_C",
+    "interviewer": "Priya Nair",
+    "interviewer_contact": "priya.nair@company.com",
+    "panel_stage": "Onsite - Systems Design",
+    "interview_time": "2026-07-05T09:00:00Z",
+    "status": "completed"
+  },
+  {
+    "interview_id": "int_2001",
+    "req_id": "req_600",
+    "candidate_id": "cand_D",
+    "interviewer": "Tom Alvarez",
+    "interviewer_contact": "tom.alvarez@company.com",
+    "panel_stage": "Onsite - Technical",
+    "interview_time": "2026-07-06T14:00:00Z",
+    "status": "completed",
+    "_scenario_note": "Past 24h SLA, no scorecard yet, no reminder sent -> should trigger first reminder"
+  },
+  {
+    "interview_id": "int_2002",
+    "req_id": "req_600",
+    "candidate_id": "cand_E",
+    "interviewer": "Lena Kowalski",
+    "interviewer_contact": "lena.kowalski@company.com",
+    "panel_stage": "Onsite - Technical",
+    "interview_time": "2026-07-05T14:00:00Z",
+    "status": "completed",
+    "_scenario_note": "Past 24h SLA, one reminder already sent, still no scorecard -> should escalate, not re-remind"
+  }
+]

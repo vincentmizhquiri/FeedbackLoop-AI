@@ -1,0 +1,11 @@
+{
+  "req_500": [
+    {"candidate_id": "cand_A", "name": "Jordan Ellis", "stage": "Onsite complete"},
+    {"candidate_id": "cand_B", "name": "Sam Whitfield", "stage": "Onsite complete"},
+    {"candidate_id": "cand_C", "name": "Riley Okafor", "stage": "Onsite complete"}
+  ],
+  "req_600": [
+    {"candidate_id": "cand_D", "name": "Alex Petrov", "stage": "Onsite complete"},
+    {"candidate_id": "cand_E", "name": "Casey Nguyen", "stage": "Onsite complete"}
+  ]
+}
