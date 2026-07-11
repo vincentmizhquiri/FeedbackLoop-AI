@@ -129,3 +129,29 @@ def get_req_criteria(req_id: str):
     if criteria is None:
         return {"req_id": req_id, "found": False, "error": "No intake-meeting criteria on file for this req."}
     return {"req_id": req_id, "found": True, **criteria}
+
+
+def get_candidate_scorecards(candidate_id: str):
+    """
+    Retrieves every interview and scorecard for a single candidate in one call.
+    This is what single-candidate summaries should use -- a candidate typically
+    has multiple panel interviews, and get_scorecard_status alone (one
+    interview_id at a time) can't surface the full picture in a single call.
+    """
+    interviews = _load("interviews.json")
+    scorecards = _load("scorecards.json")
+    cand_interviews = [iv for iv in interviews if iv["candidate_id"] == candidate_id]
+    results = []
+    for iv in cand_interviews:
+        match = next((sc for sc in scorecards if sc["interview_id"] == iv["interview_id"]), None)
+        results.append(
+            {
+                "interview_id": iv["interview_id"],
+                "interviewer": iv["interviewer"],
+                "panel_stage": iv["panel_stage"],
+                "submitted": match is not None,
+                "score": match["score"] if match else None,
+                "feedback_text": match["feedback_text"] if match else None,
+            }
+        )
+    return {"candidate_id": candidate_id, "scorecards": results}
