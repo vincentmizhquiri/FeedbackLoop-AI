@@ -24,7 +24,7 @@ def _load(name: str):
         return json.load(f)
 
 
-def get_interview_schedule(req_id: str | None = None, candidate_id: str | None = None):
+def get_interview_schedule(req_id: str | None = None, candidate_id: str | None = None, interview_id: str | None = None):
     """Reference API: Google Calendar API (cross-referenced with Greenhouse Harvest API)."""
     interviews = _load("interviews.json")
     results = []
@@ -32,6 +32,8 @@ def get_interview_schedule(req_id: str | None = None, candidate_id: str | None =
         if req_id and iv["req_id"] != req_id:
             continue
         if candidate_id and iv["candidate_id"] != candidate_id:
+            continue
+        if interview_id and iv["interview_id"] != interview_id:
             continue
         interview_time = datetime.fromisoformat(iv["interview_time"].replace("Z", "+00:00"))
         feedback_due = interview_time + timedelta(hours=SLA_HOURS)
@@ -64,6 +66,32 @@ def get_scorecard_status(interview_id: str):
                 "submitted_at": sc["submitted_at"],
             }
     return {"interview_id": interview_id, "submitted": False, "score": None, "feedback_text": None, "submitted_at": None}
+
+
+def get_candidate_scorecards(candidate_id: str):
+    """
+    Retrieves every interview and scorecard for a single candidate in one call.
+    This is what single-candidate summaries should use -- a candidate typically
+    has multiple panel interviews, and get_scorecard_status alone (one
+    interview_id at a time) can't surface the full picture in a single call.
+    """
+    interviews = _load("interviews.json")
+    scorecards = _load("scorecards.json")
+    cand_interviews = [iv for iv in interviews if iv["candidate_id"] == candidate_id]
+    results = []
+    for iv in cand_interviews:
+        match = next((sc for sc in scorecards if sc["interview_id"] == iv["interview_id"]), None)
+        results.append(
+            {
+                "interview_id": iv["interview_id"],
+                "interviewer": iv["interviewer"],
+                "panel_stage": iv["panel_stage"],
+                "submitted": match is not None,
+                "score": match["score"] if match else None,
+                "feedback_text": match["feedback_text"] if match else None,
+            }
+        )
+    return {"candidate_id": candidate_id, "scorecards": results}
 
 
 def send_reminder(interview_id: str, interviewer_contact: str):
@@ -129,29 +157,3 @@ def get_req_criteria(req_id: str):
     if criteria is None:
         return {"req_id": req_id, "found": False, "error": "No intake-meeting criteria on file for this req."}
     return {"req_id": req_id, "found": True, **criteria}
-
-
-def get_candidate_scorecards(candidate_id: str):
-    """
-    Retrieves every interview and scorecard for a single candidate in one call.
-    This is what single-candidate summaries should use -- a candidate typically
-    has multiple panel interviews, and get_scorecard_status alone (one
-    interview_id at a time) can't surface the full picture in a single call.
-    """
-    interviews = _load("interviews.json")
-    scorecards = _load("scorecards.json")
-    cand_interviews = [iv for iv in interviews if iv["candidate_id"] == candidate_id]
-    results = []
-    for iv in cand_interviews:
-        match = next((sc for sc in scorecards if sc["interview_id"] == iv["interview_id"]), None)
-        results.append(
-            {
-                "interview_id": iv["interview_id"],
-                "interviewer": iv["interviewer"],
-                "panel_stage": iv["panel_stage"],
-                "submitted": match is not None,
-                "score": match["score"] if match else None,
-                "feedback_text": match["feedback_text"] if match else None,
-            }
-        )
-    return {"candidate_id": candidate_id, "scorecards": results}

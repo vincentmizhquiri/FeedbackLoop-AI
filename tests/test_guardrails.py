@@ -53,7 +53,7 @@ def test_call_limiter_allows_up_to_limit_sla_monitoring():
     assert limiter.check_and_record("get_scorecard_status") is None  # 2nd call: ok (the one exception)
     refusal = limiter.check_and_record("get_scorecard_status")  # 3rd call: refused
     assert refusal is not None
-    assert "already called max" in refusal
+    assert "already been called the maximum" in refusal
 
 
 def test_call_limiter_blocks_second_reminder():

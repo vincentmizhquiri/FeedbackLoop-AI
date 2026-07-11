@@ -93,3 +93,12 @@ def reset(path: str = DB_PATH) -> None:
         conn.execute("DELETE FROM reminders")
         conn.execute("DELETE FROM scorecard_checks")
         conn.commit()
+
+
+def seed_demo_state(path: str = DB_PATH) -> None:
+    """
+    Seeds state so int_2002 already has a reminder logged from a prior SLA
+    cycle -- this run should then escalate it (no second reminder) while
+    int_2001 gets its first reminder.
+    """
+    record_reminder_sent("int_2002", path)
