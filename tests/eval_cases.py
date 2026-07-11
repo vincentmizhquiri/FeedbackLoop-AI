@@ -1,7 +1,8 @@
 """
-Eval Card -- the three cases from PRD Section 3d, run live against Claude.
+Eval Card -- the three cases from PRD Section 3d, run live against the
+configured OpenRouter model (defaults to a free tier model).
 
-These require ANTHROPIC_API_KEY. Unlike test_guardrails.py, the expected
+These require OPENROUTER_API_KEY. Unlike test_guardrails.py, the expected
 outputs here are judged qualitatively (a recruiter reading the output
 should recognize it as correct) -- so this script prints the agent's
 output next to the pre-written expectation for you to compare, rather than
@@ -17,11 +18,10 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from dotenv import load_dotenv
+load_dotenv()
 
 from src import state_store
 from src.agent import run_agent
-
-load_dotenv()
 
 CASES = [
     {
@@ -63,8 +63,8 @@ CASES = [
 
 
 def main():
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("ANTHROPIC_API_KEY not set -- see .env.example.")
+    if not os.environ.get("OPENROUTER_API_KEY"):
+        print("OPENROUTER_API_KEY not set -- see .env.example.")
         sys.exit(1)
 
     state_store.init_db()
